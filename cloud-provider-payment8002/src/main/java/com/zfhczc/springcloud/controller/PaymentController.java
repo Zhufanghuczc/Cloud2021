@@ -25,6 +25,11 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
+    @GetMapping("/payment/lb")
+    public String getPaymentLB(){
+        return serverPort;
+    }
+
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment){
 
@@ -38,7 +43,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping(value = "/payment/{id}")
+    @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable Long id){
 
         Payment payment = paymentService.getPaymentById(id);
